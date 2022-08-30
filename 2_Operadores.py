@@ -27,7 +27,7 @@ print(a12)
 
 #Operadores lógicos
 #Realice las siguientes operaciones
-
+#Los operadores lógicos pueden devolver cualquier tipo de variable
 l1= True and True
 l2= False and True #and da True si ambos son verdaderos
 l3= False and False
@@ -47,3 +47,30 @@ print(l15)
 print(1 and "verdadero")
 print(0 and "falso")  #Todos los string son verdaderos, menos el string "" (el cuál es falso)
 
+#Operadores de comparación
+#Los operadores de comparación solo devuelven booleanos sin importar el tipo de variable
+#Realizar las siguientes operaciones: 
+
+c1= 1 > 2
+c2= 1 < 3
+c3= 1 == 1
+c4= 2 != 1
+c5= 3 >= 3
+c6= 5 <= 2
+c7= 4 >True       #True
+c8= True > False  #True
+#c9= "hola" > True#Operaciones comparativas entre strings y Booleanos no son permitidas
+c10= [] > [1,2,3] #False, una lsita vacía es false, una lista de cualquier número de entradas es True
+c11= "a" > "b"    #False, se compara la posición en ASCII de la letra, a esta antes de b, por lo tanto es False
+
+print(c11)
+
+#Operadores de pertenencia
+#Realizar las siguientes operaciones
+
+p1= "a" in "abcdefg"          #True
+p2= "A" in "ABCDEFG"          #True
+p3= 1 in [1,2,3]              #True
+p4= 1 in ["1","2","3"]        #False
+p5= "hola" in "holamundo"     #True
+p6= "Hola" not in "holamundo" #True
