@@ -1,8 +1,5 @@
 #Operador de asignación
 
-from pickle import FALSE
-
-
 a=1
 b=3
 c=5
@@ -74,3 +71,5 @@ p3= 1 in [1,2,3]              #True
 p4= 1 in ["1","2","3"]        #False
 p5= "hola" in "holamundo"     #True
 p6= "Hola" not in "holamundo" #True
+
+print(p6)
