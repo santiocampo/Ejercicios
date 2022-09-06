@@ -2,16 +2,41 @@
 #a) Pedir al usuario que ingrese su edad, luego imprimir en pantalla si es mayor o menor de edad
 #b) Pedir al usuario que ingrese su salario, luego imprimir si su salario es alto o bajo, (salario alto > $ 5000000)
 #c) Pedir al usuario que ingrese 3 notas, luego avisar si aprueba o reprueba la materia
+from operator import truediv
+
+
 print("Ejercicio 1: ")
 print("Punto a: ")
 print("")
-edad= int(input("Dame tu edad: "))
+while True:
+    try:
+        edad=int(input("Dame tu edad: "))
+    except ValueError:
+        continue
+    if edad<=0:
+        print("El valor ingresado es incorrecto")
+        print("Ingresa otro valor.")
+        print("")
+    else:
+        break
+
 print((edad>=18 and "Es mayor de edad") or "Es menor de edad")
 print("")
 print("")
 
 print("Punto b: ")
-salario= float(input("Dame tu salario mensual en pesos: "))
+while True:
+    try:
+        salario= float(input("Dame tu salario mensual en pesos: "))
+    except ValueError:
+        continue
+    if salario<=0:
+        print("El valor ingresado es incorrecto")
+        print("Ingresa otro valor.")
+        print("")
+    else:
+        break
+
 print((salario>5000000 and "Su salario es alto") or "Su salario es bajo")
 print("")
 print("")
@@ -106,6 +131,8 @@ print("")
 
 #Ejercicio 4
 #Realizar las siguientes conversiones:
+print("Ejericicio 4: ")
+print("")
 print("Punto a: ")
 dec1,dec2,dec3= 512,8,128
 print("EL número ",dec1," convertido a binario, octal y hexadecimal es: ",bin(dec1)," ",oct(dec1)," ",hex(dec1))
@@ -132,3 +159,124 @@ hex1,hex2,hex3= "0xABC","0x10A2","0x9FF"
 print("EL número hexadecimal ",hex1,"en forma decimal es: ",int(hex1,16))
 print("EL número hexadecimal ",hex2,"en forma decimal es: ",int(hex2,16))
 print("EL número hexadecimal ",hex3,"en forma decimal es: ",int(hex3,16))
+print("")
+print("")
+
+#Ejercicio 5
+#Formatear (format(<numero>, <regla>)) los siguientes elementos:
+print("Ejercicio 5: ")
+print("")
+print("Punto a: ")
+a= 0.52941
+b= 2.389
+c= 3.5
+d= 200000
+print("El número ",a," como entero es: ", format(a,".0f"))
+print("El número ",a," como flotante con dos deciamles es: ", format(a,".2f"))
+print("El número ",a," como flotante con 5 decimales es: ", format(a,".5f"))
+print("El número ",a," como notacipon científica con 1 decimal es: ", format(a,".1e"))
+print("El número ",a," como notación científica con 2 decimales es: ", format(a,".2e"))
+
+print("El número ",b," como entero es: ", format(b,".0f"))
+print("El número ",b," como flotante con dos deciamles es: ", format(b,".2f"))
+print("El número ",b," como flotante con 5 decimales es: ", format(b,".5f"))
+print("El número ",b," como notacipon científica con 1 decimal es: ", format(b,".1e"))
+print("El número ",b," como notación científica con 2 decimales es: ", format(b,".2e"))
+
+print("El número ",c," como entero es: ", format(c,".0f"))
+print("El número ",c," como flotante con dos deciamles es: ", format(c,".2f"))
+print("El número ",c," como flotante con 5 decimales es: ", format(c,".5f"))
+print("El número ",c," como notacipon científica con 1 decimal es: ", format(c,".1e"))
+print("El número ",c," como notación científica con 2 decimales es: ", format(c,".2e"))
+
+print("El número ",d," como entero es: ", format(d,".0f"))
+print("El número ",d," como flotante con dos deciamles es: ", format(d,".2f"))
+print("El número ",d," como flotante con 5 decimales es: ", format(d,".5f"))
+print("El número ",d," como notacipon científica con 1 decimal es: ", format(d,".1e"))
+print("El número ",d," como notación científica con 2 decimales es: ", format(d,".2e"))
+print("")
+print("")
+
+print("Punto b: ")
+st= "INFORMATICA 3"
+print("La string ",st," alineada al centro es: ", format(st,"^20"))
+print("La string ",st," alineada a la derecha es: ", format(st,">20"))
+print("La string ",st," alineada a la izquierda es: ", format(st,"<20"))
+print("")
+print("")
+
+print("Punto c: ")
+print("")
+a= 128
+b= 64 
+c= 226
+print("El número ",a," como binario es: ", bin(a))
+print("El número ",a," como octal es: ", oct(a))
+print("El número ",a," como hexadecimal es: ", hex(a))
+print("")
+print("El número ",b," como binario es: ", bin(b))
+print("El número ",b," como octal es: ", oct(b))
+print("El número ",b," como hexadecimal es: ", hex(b))
+print("")
+print("El número ",c," como binario es: ", bin(c))
+print("El número ",c," como octal es: ", oct(c))
+print("El número ",c," como hexadecimal es: ", hex(c))
+print("")
+print("")
+
+#Ejercicio 6
+#Crear las siguientes secuencias:
+s1= range(1,501)
+s2= range(2,202,2)
+s3= range(100,-1,-1)
+s4= range(-100,105,5)
+print("La secuencia 1 es: ", list(s1))
+print("")
+print("La secuencia 2 es: ", list(s2))
+print("")
+print("La secuencia 3 es: ", list(s3))
+print("")
+print("La secuencia 4 es: ", list(s4))
+print("")
+
+#Ejercicio 7
+#Cree secuencias enumeradas utilizando las anteriores secuencias
+print("Ejercicio 7: ")
+print("")
+print("La secuencia 1 numerada es: ", list(enumerate(s1)))
+print("")
+print("La secuencia 2 numerada es: ", list(enumerate(s2)))
+print("")
+print("La secuencia 3 numerada es: ", list(enumerate(s3)))
+print("")
+print("La secuencia 4 numerada es: ", list(enumerate(s4)))
+print("")
+
+#Ejercicio 8
+#A los siguientes iterables,calcule,  el tamaño, la suma de elementos, valor mínimo y máximo
+print("Ejercicio 8")
+print("")
+
+i1= [200,300,1,2,3,4,231,21,54,6,76, 4, 32, 432, 654, 8, 435, 432]
+i2= list(range(2,10002,2))
+i3= list(range(302,10001,3))
+i4= 'abcdefghijklmnopqrstuvwxyz'
+
+print("EL tamaño del primer iterable es: ",len(i1))
+print("La suma de elementos del primer iterable es: ",sum(i1))
+print("El valor máximo del primer iterable es: ", max(i1))
+print("El valor mínimo del primer iterable es: ", min(i1))
+print("")
+print("EL tamaño del segundo iterable es: ",len(i2))
+print("La suma de elementos del segundo iterable es: ",sum(i2))
+print("El valor máximo del segundo iterable es: ", max(i2))
+print("El valor mínimo del segundo iterable es: ", min(i2))
+print("")
+print("EL tamaño del tercer iterable es: ",len(i3))
+print("La suma de elementos del tercer iterable es: ",sum(i3))
+print("El valor máximo del tercer iterable es: ", max(i3))
+print("El valor mínimo del tercer iterable es: ", min(i3))
+print("")
+print("EL tamaño del cuarto iterable es: ",len(i4))
+print("El valor máximo del cuarto iterable es: ", max(i4))
+print("El valor mínimo del cuarto iterable es: ", min(i4))
