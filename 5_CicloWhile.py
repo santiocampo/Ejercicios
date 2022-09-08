@@ -99,9 +99,3 @@ print(listan)
 print("EL mayor de los números ingresados es: ",max(listan))
 print("")
 print("")
-
-#Realice un programa que lea una secuencia de números y cuente cuántos números son pares e impares
-n= int(input("Dame la cantidad de números en la secuencia: "))
-cn=1
-while cn<=n:
-    num=int(input(""))
