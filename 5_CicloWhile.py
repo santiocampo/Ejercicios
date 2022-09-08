@@ -31,7 +31,77 @@ while True:
         print("Ingresa otro número")
         print("")
 #Realice un ciclo while que imprima los números del 10 al 100, separados por guión sin salto de guía 
-contador=1
+contador=10
 while contador<101:
-    print(contador,end=" - ")
+    print(contador,end="-")
     contador=contador+1
+print("")
+print("")
+
+#Mostrar en pantalla los números del 200 al 100 utilizando ciclo while
+
+contador= 200
+while contador>99:
+    print(contador)
+    contador= contador-1
+print("")
+print("")
+#Mostrar en pantalla los números del 200 al 100 utilizando ciclo while
+#Haga que no haya un salto de línea
+contador= 200
+while contador>99:
+    print(contador,end=" ")
+    contador= contador-1
+print("")
+print("")
+#Mostrar en pantalla los números del 200 al 100 utilizando ciclo while
+#Haga que el salto de línea se haga cada múltiplo de 10
+contador= 200
+ciclos= 1
+
+while contador>=100:
+    if (str(contador)[-1] in "098765432"):
+        print(contador, end=" ")
+        contador
+    else:
+        print(contador,end="\n")
+    contador=contador-1
+print("")
+print("")
+
+#Pida a un usuario que ingrese números, en caso de que así lo desee
+#De los números calcule cual es el mayor de los ingresados
+#Si el usuario no desea ingresar más números el ciclo debe terminar
+#respuesta="Si"
+#mayor= -99999999999
+#while respuesta=="Si":
+#    respuesta= input("Desea ingresar un número?: ")
+#    if respuesta== "Si":
+#        número=float(input("Ingrese el número: "))
+#        if número > mayor:
+#            mayor=número
+#    else:
+#        respuesta=="No"
+#
+#print("El mayor de los números ingresadoes es: ",mayor)
+
+respuesta="Si"
+listan= []
+while respuesta=="Si":
+    respuesta=input("Desea ingresar un número: ")
+    if respuesta == "Si":
+        n=float(input("Ingrese un número: "))
+        listan.append(n)
+    else:
+        respuesta=="No"
+
+print(listan)
+print("EL mayor de los números ingresados es: ",max(listan))
+print("")
+print("")
+
+#Realice un programa que lea una secuencia de números y cuente cuántos números son pares e impares
+n= int(input("Dame la cantidad de números en la secuencia: "))
+cn=1
+while cn<=n:
+    num=int(input(""))
