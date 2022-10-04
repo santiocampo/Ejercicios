@@ -33,3 +33,26 @@ print(s1)
 
 lista3Copia.sort(reverse= True)
 print(lista3Copia)
+
+#Indexado listas
+
+listaNueva= [1,2,3,4,5,"hola", "cruel", "mundo", 100]
+
+#Extraer el primer elemento de dos maneras
+print(listaNueva[0], listaNueva[-9])
+#Extraer el último elemento de dos maneras.
+print(listaNueva[8], listaNueva[-1])
+#Extraer el elemento de la mitad de dos maneras
+print(listaNueva[4], listaNueva[-5])
+
+#Slicing
+#Extraer cada elemento de dos en dos
+print(listaNueva[0:9:2])
+#Extraer hasta la mitad de la cadena 
+print(listaNueva[0:5])
+#Extraer desde la mitad de la cadena en adelante
+print(listaNueva[5::])
+#Extraer los elementos que son strings
+print(listaNueva[5:8])
+#Extraer los elementos que son enteros
+print(listaNueva[0:5] + [listaNueva[-1]])
