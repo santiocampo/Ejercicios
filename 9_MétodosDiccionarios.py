@@ -17,7 +17,6 @@ print(diccionario.get(("Juan David Gonzales"), "No existe esta clave"))
 
 try: 
     print(diccionario["Juan David Gonzales"])
-    1/0
 except: 
     print("Esto es un error, el programa continua")
 print("--------------\n\n")
