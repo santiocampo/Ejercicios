@@ -4,8 +4,7 @@ from PIL import Image, ImageTk
 import uuid as codigos
 import json
 
-global listaDatos
-global posicionActual
+global listaDatos, posicionActual
 
 #Configuración interfaz:
 #Ventana Principal
@@ -103,7 +102,7 @@ def actualizarArchivoJson():
     print("El archivo se ha actualizado y cerrado")
 
 def eliminarDatosLista():
-    for dato in datos.get_children:
+    for dato in datos.get_children():
         datos.delete(dato)
 
 def cargarDatosJson():
@@ -111,7 +110,7 @@ def cargarDatosJson():
     eliminarDatosLista()
     indexFila = 1
     for key in listaDatos:
-        id = key["ID"]
+        id = key["id"]
         Nombre = key["Nombre"]
         Apellidos = key["Apellidos"]
         Telefono = key["Teléfono"]
@@ -200,5 +199,68 @@ def agregarCliente():
     Telefono = entradaTelefono.get()
     Tamaño = entradaTamaño.get()
     Ingredientes = entradaIngredientes.get()
+
+    if len(Nombre == 0):
+        cambiarColorCeldas("#FFB2AE")
+        return
+    seleccionOperacion("Agregar", id, Nombre, Apellidos, Telefono, Tamaño, Ingredientes)
+
+
+def actualizarCliente():
+    id = crearID.get()
+    Nombre = entradaNombre.get()
+    Apellidos = entradaApellidos.get()
+    Telefono = entradaTelefono.get()
+    Tamaño = entradaTamaño.get()
+    Ingredientes = entradaIngredientes.get()
+
+    if len(Nombre == 0):
+        cambiarColorCeldas("#FFB2AE")
+        return
+    seleccionOperacion("Actualizar", id, Nombre, Apellidos, Telefono, Tamaño, Ingredientes)
+
+def eliminarCliente():
+    id = crearID.get()
+    seleccionOperacion("Eliminar", id, None, None, None, None, None)
+
+def seleccionOperacion(comando, id, Nombre, Apellidos, Telefono, Tamaño, Ingredientes):
+    global listaDatos
+
+    if (comando == "Actualizar"):
+        fila = filaListaDatos(id)
+        if (fila >= 0):
+            cliente = {"ID": id, "Nombre": Nombre, "Apellidos": Apellidos, "Teléfono": Telefono, "Tamaño": Tamaño, "Ingredientes": Ingredientes}
+            listaDatos[fila] = cliente
+    elif (comando == "Añadir"):
+            cliente = {"ID": id, "Nombre": Nombre, "Apellidos": Apellidos, "Teléfono": Telefono, "Tamaño": Tamaño, "Ingredientes": Ingredientes}
+            listaDatos.append(cliente)
+    elif (comando == "Eliminar"):
+        fila = filaListaDatos(id)
+        if (fila >= 0):
+            del listaDatos[fila];
+
+    actualizarArchivoJson();
+    cargarDatosJson();
+    limpiarCliente();
+
+def mostrarSeleccionActual(event):
+    global posicionActual
+    posicionActual = datos.selection()[0]
+    ultimoCliente = (datos.item(posicionActual, "values"))
+    cargarDatosFila(ultimoCliente)
+    cambiarEstadoActivo("Edit")
+
+datos.bind("<ButtonRelease>", mostrarSeleccionActual)
+
+espacioBotonesOperaciones = LabelFrame(interfaz, text = "", bg = "PaleTurquoise4", font = ("ArialBlack", 14))
+botonMostrarenTerminal = Button(espacioBotonesOperaciones, text = "Mostrar", padx = 20, pady = 10, command = imprimirEntradasCliente)
+botonAñadir = Button(espacioBotonesOperaciones, text = "Añadir", padx = 20, pady = 10, command = agregarCliente)
+botonActualizar = Button(espacioBotonesOperaciones, text = "Actualizar", padx = 20, pady = 10, command = actualizarCliente)
+botonEliminar = Button(espacioBotonesOperaciones, text = "Eliminar", padx = 20, pady = 10, command = eliminarCliente)
+botonSalir = Button(espacioBotonesOperaciones, text = "Salir", padx = 20, pady = 10, command = interfaz.quit)
+botonSalir.pack(side = LEFT)
+
+cargarArchivoJson()
+cargarDatosJson()
 
 interfaz.mainloop()
