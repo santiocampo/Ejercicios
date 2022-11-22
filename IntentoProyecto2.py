@@ -6,6 +6,8 @@ import json
 
 global listaDatos, posicionActual
 
+listaDatos = []
+
 #Configuración interfaz:
 #Ventana Principal
 interfaz = Tk()
@@ -17,7 +19,7 @@ fondoInterfaz = Label(interfaz, image = imagenFondoInterfaz).place(x = 0, y = 0)
 #Ingreso Información
 
 marcoInformacion = LabelFrame(interfaz, text = "Información cliente", bg = "PaleTurquoise4", font = ("ArialBlack", 14))
-marcoInformacion.grid(row = 0, column = 0, rowspan = 7, columnspan = 5)
+marcoInformacion.grid(row = 0, column = 0, rowspan = 9, columnspan = 4)
 
 barraIngresoID = Label(marcoInformacion,            anchor = "w",           width = 24,
                        height = 1,                  relief = "ridge",       text = "ID",
@@ -50,25 +52,16 @@ entradaID = Label(marcoInformacion,       anchor = "w",     height = 1,
                   relief = "ridge",       textvariable = crearID,      font = ("ArialBlack", 14))
 entradaID.grid(row = 1, column = 1)
 
-entradaNombre = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("ArialBlack", 14))
-entradaNombre.grid(row = 2, column = 2, columnspan = 2)
-
-entradaApellidos = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("ArialBlack", 14))
-entradaApellidos.grid(row = 3, column = 2, columnspan= 2)
-
-entradaTelefono = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("ArialBlack", 14))
-entradaTelefono.grid(row = 4, column = 2, columnspan = 2)
-
-entradaTamaño = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("ArialBlack", 14))
-entradaTamaño.grid(row = 5, column = 2, columnspan = 2)
-
-entradaIngredientes = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("ArialBlack", 14))
-entradaIngredientes.grid(row = 6, column = 2, columnspan = 2)
+entradaNombre = Entry(interfaz,width=30,borderwidth=2,fg="black",font=('Consolas',14)).place(x = 415, y = 52)
+entradaApellidos = Entry(interfaz,width=30, borderwidth = 2, fg = "black", font = ("Consolas", 14)).place(x = 415, y = 80)
+entradaTelefono = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("Consolas", 14)).place(x = 415, y = 108)
+entradaTamaño = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("Consolas", 14)).place(x = 415, y = 136)
+entradaIngredientes = Entry(interfaz, width = 30, borderwidth = 2, fg = "black", font = ("Consolas", 14)).place(x = 415, y = 164)
 
 #Listado Datos
 
 datos = ttk.Treeview(interfaz, columns = (1,2,3,4,5,6), show = "headings", height = "16")
-datos.grid(row = 11, column = 0, rowspan = 16, columnspan = 6)
+datos.grid(row = 15, column = 0, rowspan = 16, columnspan = 6)
 
 datos.heading(1, text = "ID", anchor = "center")
 datos.heading(2, text = "Nombre", anchor = "center")
@@ -110,11 +103,11 @@ def cargarDatosJson():
     eliminarDatosLista()
     indexFila = 1
     for key in listaDatos:
-        id = key["id"]
+        id = key["ID"]
         Nombre = key["Nombre"]
         Apellidos = key["Apellidos"]
-        Telefono = key["Teléfono"]
-        Tamaño = key["Tamaño"]
+        Telefono = key["Telefono"]
+        Tamaño = key["Tamano"]
         Ingredientes = key["Ingredientes"]
         datos.insert('', index = "end", iid = indexFila, text = '', values = (id, Nombre, Apellidos, Telefono, Tamaño, Ingredientes))
         indexFila = indexFila + 1
@@ -252,7 +245,8 @@ def mostrarSeleccionActual(event):
 
 datos.bind("<ButtonRelease>", mostrarSeleccionActual)
 
-espacioBotonesOperaciones = LabelFrame(interfaz, text = "", bg = "PaleTurquoise4", font = ("ArialBlack", 14))
+espacioBotonesOperaciones = LabelFrame(interfaz, text = "", bg = "PaleTurquoise4", font = ("Consolas", 14))
+espacioBotonesOperaciones.grid(row = 16, column = 0, rowspan = 7, columnspan = 5)
 botonMostrarenTerminal = Button(espacioBotonesOperaciones, text = "Mostrar", padx = 20, pady = 10, command = imprimirEntradasCliente)
 botonAñadir = Button(espacioBotonesOperaciones, text = "Añadir", padx = 20, pady = 10, command = agregarCliente)
 botonActualizar = Button(espacioBotonesOperaciones, text = "Actualizar", padx = 20, pady = 10, command = actualizarCliente)
