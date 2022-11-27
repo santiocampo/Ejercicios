@@ -87,17 +87,17 @@ datos.column("#6", anchor = "w", width = 235, stretch = False)
 
 def cargarArchivoJson ():
     global listaDatos
-    with open("listadoClientes.json","r") as file_handler:
+    with open("listadoClientes.json", "r") as file_handler:
         listaDatos = json.load(file_handler)
     file_handler.close
-    print("El archivo se ha leído y cerrado")
+    print('El archivo ha sido leído')
 
 def actualizarArchivoJson():
     global listaDatos
     with open("listadoClientes.json", "w") as file_handler:
         json.dump(listaDatos, file_handler, indent=4)
     file_handler.close
-    print('file has been written to and closed')
+    print('EL archivo ha sido actualizado')
 
 def eliminarDatosLista():
     for item in datos.get_children():
@@ -108,37 +108,37 @@ def cargarDatosJson():
 
     eliminarDatosLista()
 
-    indexFila = 1
+    filaActual=1
 
     for key in listaDatos:
-        id = key["ID"]
+        idActual = key["ID"]
         Nombre = key["Nombre"]
         Apellidos = key["Apellidos"]
         Telefono = key["Telefono"]
-        Tamaño = key["Tamano"]
+        Tamaño = key["Tamaño"]
         Ingredientes = key["Ingredientes"]
-        datos.insert('',index='end',iid=indexFila,text="",
-                     values=(id,Nombre,Apellidos,Telefono,Tamaño,Ingredientes))
-        indexFila = indexFila + 1
+        datos.insert('',index='end',iid=filaActual,text="",
+               values=(idActual, Nombre, Apellidos, Telefono, Tamaño, Ingredientes))    
+        filaActual = filaActual+1
 
 def limpiarCliente():
-    entradaNombre.delete(0, END)
-    entradaApellidos.delete(0, END)
-    entradaTelefono.delete(0, END)
-    entradaTamaño.delete(0, END)
-    entradaIngredientes.delete(0, END)
-    entradaID.configure(text = "")
+    entradaNombre.delete(0,END)
+    entradaApellidos.delete(0,END)
+    entradaTelefono.delete(0,END)
+    entradaTamaño.delete(0,END)
+    entradaIngredientes.delete(0,END)
+    entradaID.configure(text="")
     entradaNombre.focus_set()
     crearID.set(codigos.uuid4())
     cambiarColorCeldas("#FFFFFF")
 
-def filaListaDatos(id):
-    global my_data_list
+def filaListaDatos(idActual):
+    global listaDatos
     entrada     = 0
     valido   = False
 
-    for rec in my_data_list:
-        if rec["id"] == id:
+    for rec in listaDatos:
+        if rec["ID"] == idActual:
             valido = True
             break
         entrada = entrada+1
@@ -173,7 +173,7 @@ def cargarDatosFila(_tuple):
     if len(_tuple)==0:
         return;
 
-    entradaID.set(_tuple[0]);
+    crearID.set(_tuple[0]);
     entradaNombre.delete(0,END)
     entradaNombre.insert(0,_tuple[1])
     entradaApellidos.delete(0,END)
@@ -219,13 +219,13 @@ def actualizarCliente():
     Tamaño = entradaTamaño.get()
     Ingredientes = entradaIngredientes.get()
 
-    if len(Nombre == 0):
+    if len(Nombre) == 0:
         cambiarColorCeldas("#FFB2AE")
         return
     seleccionOperacion("Actualizar", id, Nombre, Apellidos, Telefono, Tamaño, Ingredientes)
 
 def eliminarCliente():
-    id = entradaID.get()
+    id = crearID.get()
     seleccionOperacion('Eliminar',id,None,None,None,None,None)
 
 def seleccionOperacion(comando, id, Nombre, Apellidos, Telefono, Tamaño, Ingredientes):
@@ -250,7 +250,7 @@ def seleccionOperacion(comando, id, Nombre, Apellidos, Telefono, Tamaño, Ingred
 
     actualizarArchivoJson();
     cargarDatosJson();
-    cargarDatosFila();
+    limpiarCliente();
 
 def mostrarSeleccionActual(event):
     posicionActual = datos.selection()[0]
@@ -270,6 +270,8 @@ botonActualizar = Button(espacioBotonesOperaciones, text = "Actualizar", padx = 
 botonActualizar.pack(side = LEFT)
 botonEliminar = Button(espacioBotonesOperaciones, text = "Eliminar", padx = 20, pady = 10, command = eliminarCliente)
 botonEliminar.pack(side = LEFT)
+botonCancelar = Button(espacioBotonesOperaciones,text="Cancelar",padx=18,pady=10,command=Cancelar)
+botonCancelar.pack(side=LEFT)
 botonSalir = Button(espacioBotonesOperaciones, text = "Salir", padx = 20, pady = 10, command = interfaz.quit)
 botonSalir.pack(side = LEFT)
 
